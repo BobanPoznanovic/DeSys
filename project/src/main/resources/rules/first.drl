@@ -1,0 +1,13 @@
+//created on: Apr 27, 2020
+package rules
+
+import project.model.JustForTesting
+
+rule "Testing"
+
+    when
+        object : JustForTesting(text == "Tested")
+    then
+       	object.setText("Tested1");
+end
+
