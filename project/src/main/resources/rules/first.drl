@@ -2,12 +2,40 @@
 package rules
 
 import project.model.JustForTesting
+import project.model.TimeInPark
+import project.model.Location
+import project.model.Host
+import project.model.TimeCategory
+import project.model.Mode
 
 rule "Testing"
 
     when
         object : JustForTesting(text == "Tested")
     then
+    	System.out.println("Text");
        	object.setText("Tested1");
 end
+
+rule "Dolores is sleeping in her room"
+	when
+		time: TimeInPark(part_of_day == TimeCategory.SUNRISE);
+		h: Host(first_name == "Dolores", last_name == "Abernathy", current_mode == Mode.CHARACHTER, current_location.place == 4, $l: current_location);
+	then
+		$l.setPlace(3);
+		modify (h){setCurrent_location($l)}
+end
+
+rule "Dolores is going to front porch"
+	when
+		time: TimeInPark(part_of_day == TimeCategory.SUNRISE);
+		h: Host(first_name == "Dolores", last_name == "Abernathy", current_mode == Mode.CHARACHTER, current_location.place == 3, $l: current_location);
+	then
+		$l.setPlace(2);
+		modify (h){setCurrent_location($l)}
+end
+
+
+	
+		
 

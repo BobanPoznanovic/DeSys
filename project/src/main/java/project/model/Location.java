@@ -46,11 +46,11 @@ public class Location {
 		this.location_name = location_name;
 	}
 
-	private int getPlace() {
+	public int getPlace() {
 		return place;
 	}
 
-	private void setPlace(int place) {
+	public void setPlace(int place) {
 		this.place = place;
 	} 
 	

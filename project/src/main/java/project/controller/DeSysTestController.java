@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import project.model.Host;
 import project.model.JustForTesting;
 import project.service.DeSysTestService;
 
@@ -20,12 +21,12 @@ public class DeSysTestController {
 	}
 
 	@RequestMapping(value="/test", method = RequestMethod.GET, produces = "application/json")
-	public JustForTesting test(@RequestParam(required = true) String text) {
+	public Host test(@RequestParam(required = true) String text) {
 		
 		JustForTesting txt = new JustForTesting();
 		txt.setText(text);
-		deSysTestService.test(txt);
+		Host retVal = deSysTestService.test(txt);
 		
-		return txt;
+		return retVal;
 	}
 }

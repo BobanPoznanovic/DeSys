@@ -44,14 +44,6 @@ public class Host {
 		this.last_name = last_name;
 	}
 
-	private Mode getCurrent_mode() {
-		return current_mode;
-	}
-
-	private void setCurrent_mode(Mode current_mode) {
-		this.current_mode = current_mode;
-	}
-
 	public Location getCurrent_location() {
 		return current_location;
 	}
@@ -66,6 +58,14 @@ public class Host {
 
 	public void setInventory(ArrayList<Item> inventory) {
 		this.inventory = inventory;
+	}
+
+	public Mode getCurrent_mode() {
+		return current_mode;
+	}
+
+	public void setCurrent_mode(Mode current_mode) {
+		this.current_mode = current_mode;
 	}
 	
 }
