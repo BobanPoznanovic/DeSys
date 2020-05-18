@@ -29,4 +29,14 @@ public class DeSysTestController {
 		
 		return retVal;
 	}
+	
+	@RequestMapping(value = "/test-narrative", method = RequestMethod.GET, produces = "application/json")
+	public String test_narrative_rules() {
+		
+		String retVal;
+		
+		retVal = deSysTestService.test_narrative();
+		
+		return retVal;
+	}
 }

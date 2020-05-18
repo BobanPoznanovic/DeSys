@@ -47,4 +47,24 @@ public class DeSysTestService {
 		
 		return dolores;
 	}
+	
+	public String test_narrative() {
+		Host test_host = new Host();
+		test_host.setFirst_name("Test");
+		
+		KieSession kieSession = kieContainer.newKieSession("narrativesSession");
+		
+		FakeService fake = new FakeService();
+		kieSession.setGlobal("fake", fake);
+		
+		kieSession.insert(test_host);
+		kieSession.fireAllRules();
+		kieSession.dispose();
+		
+		return "From service testing narrative package";
+	}
+	
+	public void testConsoleWrite() {
+		System.out.println("Triggered from rules");
+	}
 }

@@ -1,0 +1,28 @@
+//created on: May 18, 2020
+package narratives
+
+//list any import classes here.
+import project.model.Host
+
+
+//declare any global variables here
+global project.service.FakeService fake
+
+
+rule "Your First Rule"
+
+    when
+        h: Host(first_name == "Test")
+    then
+        fake.print();
+
+end
+
+rule "Your Second Rule"
+    //include attributes such as "salience" here...
+    when
+        //conditions
+    then
+        //actions
+
+end
