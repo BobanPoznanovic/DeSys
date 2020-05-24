@@ -1,6 +1,5 @@
 package project.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.model.Host;
-import project.model.Item;
-import project.model.Location;
-import project.model.Mode;
-import project.model.Park;
 import project.model.dto.CreateHostDTO;
 import project.service.HostsCatalog;
 

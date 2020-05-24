@@ -26,21 +26,11 @@ public class DeSysTestService {
 	public Host test(JustForTesting tested) {
 		
 		Host dolores = new Host();
-		dolores.setFirst_name("Dolores");
-		dolores.setLast_name("Abernathy");
-		dolores.setCurrent_mode(Mode.CHARACHTER);
-		Location location = new Location();
-		location.setPark(Park.WESTWORLD);
-		location.setLocation_name("Abernathy Ranch");
-		location.setPlace(4);
-		dolores.setCurrent_location(location);
 		
 		TimeInPark time = new TimeInPark();
 		time.setPart_of_day(TimeCategory.SUNRISE);
 		
 		KieSession kieSession = kieContainer.newKieSession("rulesSession");
-		kieSession.insert(tested);
-		kieSession.insert(dolores);
 		kieSession.insert(time);
 		kieSession.fireAllRules();
 		kieSession.dispose();

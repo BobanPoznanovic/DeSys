@@ -1,0 +1,37 @@
+//created on: May 24, 2020
+package rules
+
+//list any import classes here.
+import project.model.Host
+import project.model.hostEvents.HostLocationChangeEvent
+import project.model.hostEvents.HostEvent
+
+//declare any global variables here
+
+rule "Host"
+
+    when
+        h : Host();
+    then
+        System.out.println(h);
+
+end
+
+rule "HostEvent"
+
+    when
+        he : HostEvent($h : host);
+    then
+    	System.out.println("Host event");
+    	insert($h);
+        
+end
+
+rule "HostLocationChangeEvent"
+
+    when
+        hlce : HostLocationChangeEvent($hid : hostID ,$l : location);
+    then
+    	System.out.println("Location Change");
+        
+end

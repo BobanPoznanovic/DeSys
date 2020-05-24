@@ -3,6 +3,7 @@ package project.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.model.Host;
@@ -11,14 +12,20 @@ import project.model.Location;
 import project.model.Mode;
 import project.model.Park;
 import project.model.dto.CreateHostDTO;
+import project.model.hostEvents.HostEvent;
+import project.model.hostEvents.HostLocationChangeEvent;
 
 @Service
 public class HostsCatalog {
 	
 	private HashMap<String, Host> hosts;
+
+	private final DeSysHostService deSysHostsService;
 	
-	public HostsCatalog() {
+	@Autowired
+	public HostsCatalog(DeSysHostService deSysHostsService) {
 		this.hosts = new HashMap<String, Host>();
+		this.deSysHostsService = deSysHostsService;
 	}
 	
 	public Host changeHostLocation(CreateHostDTO body) {
@@ -34,6 +41,11 @@ public class HostsCatalog {
 			location.setPlace(body.getLocation_place());
 			
 			host.setCurrent_location(location);
+			
+			HostLocationChangeEvent hlce = new HostLocationChangeEvent(host.getId(), location);
+			
+			deSysHostsService.hostLocationChange(hlce);
+			//deSysHostsService.hostUpdated(host);
 			
 			return host;
 		}
@@ -92,6 +104,10 @@ public class HostsCatalog {
 	public Host addHost(Host host) {
 		
 		hosts.put(host.getId(), host);
+		
+		HostEvent event = new HostEvent(host);
+		//deSysHostsService.hostCreated(host);
+		deSysHostsService.hostCreated(event);
 		
 		return host;
 	}

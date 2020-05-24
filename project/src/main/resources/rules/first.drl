@@ -17,6 +17,14 @@ rule "Testing"
        	object.setText("Tested1");
 end
 
+rule "Time"
+
+    when
+        time : TimeInPark();
+    then
+    	System.out.println("Time is: " + time.getPart_of_day() + " - " + time);
+end
+
 rule "Dolores is sleeping in her room"
 	when
 		time: TimeInPark(part_of_day == TimeCategory.SUNRISE);
@@ -31,6 +39,22 @@ rule "Dolores is going to front porch"
 		time: TimeInPark(part_of_day == TimeCategory.SUNRISE);
 		h: Host(first_name == "Dolores", last_name == "Abernathy", current_mode == Mode.CHARACHTER, current_location.place == 3, $l: current_location);
 	then
+		$l.setPlace(2);
+		modify (h){setCurrent_location($l)}
+end
+
+rule "Simple - Dolores is sleeping in her room"
+	when
+		h: Host(first_name == "Dolores", last_name == "Abernathy", current_mode == Mode.CHARACHTER, current_location.place == 4, $l: current_location);
+	then
+		System.out.println("Dolores is waking up ");
+end
+
+rule "Simple - Dolores is going to front porch"
+	when
+		h: Host(first_name == "Dolores", last_name == "Abernathy", current_mode == Mode.CHARACHTER, current_location.place == 3, $l: current_location);
+	then
+		System.out.println("Dolores is moving ");
 		$l.setPlace(2);
 		modify (h){setCurrent_location($l)}
 end

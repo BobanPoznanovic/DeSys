@@ -1,4 +1,6 @@
-package project.model;
+package project.model.hostEvents;
+
+import project.model.HostDialogMessage;
 
 public class HostDialogEvent {
 
