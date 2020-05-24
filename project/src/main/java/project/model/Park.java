@@ -2,7 +2,7 @@ package project.model;
 
 public enum Park {
 	WESTWORLD,
-	SHOGUNWORDL,
+	SHOGUNWORLD,
 	WARWORLD,
 	THE_RAJ
 }
